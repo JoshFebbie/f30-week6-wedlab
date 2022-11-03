@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-// const path = require('path')
 require("dotenv").config()
+const path = require("path")
 
 app.use(express.json())
 
@@ -14,7 +14,9 @@ let rollbar = new Rollbar({
 
 rollbar.log('Hello world!')
 
-
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./index.html"))
+})
 
 const port = process.env.PORT || 5050
 
